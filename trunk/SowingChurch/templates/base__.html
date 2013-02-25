@@ -1,0 +1,253 @@
+{% load cms_tags sekizai_tags menu_tags %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>씨뿌리는교회 | {% page_attribute "title" %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ STATIC_URL}}css/bootstrap.css"/>
+
+        <link rel="stylesheet" href="{{ STATIC_URL}}css/bootstrap-responsive.css"/>
+
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <style>
+            body {
+                font-size: 12px; color:#555555;
+                line-height: 180%;
+            }
+            p strong {
+                letter-spacing: -1;
+                color: #333333;
+            }
+            .eng-strong {
+                letter-spacing: 0;
+            }
+            img {
+                max-width: none;
+            }
+            .outer {
+                width: 915px;
+                margin-right: auto;
+                margin-left: auto;
+                padding-top: 61px;
+            }
+            .top-spacer {
+                height: 13px;
+                background-color: #D8D8D8;
+            }
+            .header {
+                margin-bottom: 11px;
+            }
+            footer {
+                margin-top: 66px;
+            }
+            .topnav {
+                list-style: none;
+                margin: 0;
+            }
+            .topnav > li {
+                float: left;
+            }
+            .topnav .on {
+                position: absolute;
+                display: none;
+            }
+            .content_top_img {
+                margin-top: 14px;
+            }
+            .subnav.welcome {
+                background-color: #3D8D91;
+            }
+            .subnav.sermon  {
+                background-color: #9CAA05;
+            }
+            .subnav.vision-mission {
+                background-color: #44669F;
+            }
+            .subnav.sowing   {
+                background-color: #7A5628;
+            }
+            .subnav.growing  {
+                background-color: #3F8142;
+            }
+            .subnav.reaping  {
+                background-color: #C96613;
+            }
+            .subnav.connection  {
+                background-color: #9C4B84;
+            }
+            .subnav {
+                display: none;
+                position: absolute;
+                -webkit-border-radius: 7px;
+                -moz-border-radius: 7px;
+                border-radius: 7px;
+                height: 24px;
+            }
+            .subnav ul {
+                list-style: none;
+                font-weight: bold;
+                padding-left: 15px;
+                padding-right: 15px;
+                margin: 3px 0px 3px 0px ;
+            }
+            .subnav ul > li {
+                float: left;
+                padding-left: 6px;
+                padding-right: 6px;
+            }
+            .subnav ul > li a:link {
+                color: white;
+            }
+            .subnav ul > li a:visited {
+                color: white;
+            }
+            .td_apply {
+                padding-top: 8px;
+                /*padding-bottom: 2px;*/
+                padding-left: 6px;
+                padding-right: 0px;
+                /*line-height: 130%;*/
+            }
+            .time-location-table .td_apply {
+                vertical-align: middle;
+                padding: 5px 0px 2px 6px;
+            }
+            .location-contact-table {
+                line-height: 15px;
+            }
+            .minister-table .td_apply {
+                padding-top: 0;
+            }
+            .ministry-table p {
+                margin-bottom: 0;
+            }
+            .ministry-table .td_dept {
+                padding: 7px 0px 4px 0px;
+            }
+            .ministry-table .td_h {
+                padding: 15px 5px 20px 0px;
+            }
+        </style>
+        {% render_block "css" %}
+        {% block css %}
+        {% endblock %}
+    </head>
+    <body>
+      {% cms_toolbar %}
+        <div class="top-spacer"></div>
+        <div class="outer">
+            <div class="header">
+                <a class="brand" href="/"><img src="{{ STATIC_URL}}img/logo.gif" border="0" /></a>
+                <!--div class="btn-group pull-right">
+                </div-->
+                <div class="pull-right">
+                        <div class="container" style="width:auto;">
+                    <ul class="topnav" role="navigation">
+                        {% show_menu 0 1 100 100 "menu/menu_custom.html" %}
+                    </ul>
+                        </div>
+                </div>
+            </div>
+
+            {% block base_content%}{% endblock %}
+
+            <footer>
+                {% block footer %}
+                  {% placeholder 'footer' or %}
+                  <p><img src="{{ STATIC_URL}}img/addr.gif" border="0" width="915" height="40"></p>
+                  {% endplaceholder %}
+                {% endblock %}
+            </footer>
+        </div>
+
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-dropdown.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-collapse.js"></script>
+        <script type="text/javascript">
+          $(function() {
+              $('.topnav > li').hover(function() {
+                  if(!$(this).hasClass("ancestor")) {
+                      var $img = $(this).find("img");
+                      var offImg = $img.attr("src");
+                      var onImg = offImg.replace("_off.gif", "_on.gif");
+                      //$(this).parent().css("background-image", "url(" + onImg + ")");
+                      $img.attr("src", onImg);
+                  }
+                  var $subnav = $(this).find(".subnav");
+                  var $topnav = $(this).parent();
+                  var tRightEdge = $topnav.offset().left + $topnav.outerWidth();
+                  $subnav.show();//css("display", "inline-table");
+                  var sRightEdge = $subnav.offset().left + $subnav.outerWidth();
+                  if(sRightEdge > tRightEdge)
+                      $subnav.offset({left: $subnav.offset().left - (sRightEdge - tRightEdge)});
+              },function(){
+                  $(this).find(".subnav").hide();
+                  if(!$(this).hasClass("ancestor")) {
+                      var $img = $(this).find("img");
+                      var onImg = $img.attr("src");
+                      var offImg = onImg.replace("_on.gif", "_off.gif");
+                      //$img.fadeOut(function(){
+                      $img.attr("src", offImg);
+                  }
+              });
+              $('.home-links a').hover(function() {
+                  var $img = $(this).find("img");
+                  var offImg = $img.attr("src");
+                  var onImg = offImg.replace("_off.gif", "_on.gif");
+                  $img.attr("src", onImg);
+              },function(){
+                  var $img = $(this).find("img");
+                  var onImg = $img.attr("src");
+                  var offImg = onImg.replace("_on.gif", "_off.gif");
+                  $img.attr("src", offImg);
+              });
+              /*
+              $('.topnav li:not(.ancestor) a').hover(function() {
+                  $(this).find("img:hidden").offset(function(index, currentOffset) {
+                      if(currentOffset.top == 0 || currentOffset.left == 0)
+                    return $(this).parent().find("img:visible").offset()
+                      else
+                      return currentOffset;
+                  });
+                  $(this).find("img").fadeToggle();
+              }, function() {
+                  $(this).find("img").fadeToggle();
+              });
+              */
+              /*
+               $(".topnav li a img.on").offset(function(index, currentOffset) {
+               return $(this).parent().find("img.off").offset()
+               });
+               */
+              /*
+               $('.topnav li a').hover(function() {
+               var $img = $(this).find("img");
+               var offImg = $img.attr("src");
+               //if(offImg.index)
+               var onImg = offImg.replace("_off.gif", "_on.gif");
+               $img.fadeOut(function(){
+               $img.attr("src", onImg);
+               $img.load(function() { $img.fadeIn(); });
+               });
+               },function(){
+               var $img = $(this).find("img");
+               var onImg = $img.attr("src");
+               var offImg = onImg.replace("_on.gif", "_off.gif");
+               $img.fadeOut(function(){
+               $img.attr("src", offImg);
+               $img.load(function() { $img.fadeIn(); });
+               });
+               });
+               */
+            //$('.dropdown-toggle').dropdown();
+            //$(".collapse").collapse()
+          });
+        </script>
+        {% render_block "js" %}
+    </body>
+</html>
