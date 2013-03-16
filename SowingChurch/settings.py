@@ -231,7 +231,7 @@ LANGUAGES = [
     ('kr', 'Korean'),
 ]
 
-SITE_NAME = "씨뿌리는교회"
+SITE_NAME = "씨뿌리는 교회"
 
 CMS_PERMISSION = True
 CMS_SHOW_START_DATE = True
