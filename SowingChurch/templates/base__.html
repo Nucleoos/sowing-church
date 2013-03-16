@@ -14,127 +14,10 @@
         <!--[if lt IE 9]>
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        <style>
-            body {
-                font-size: 12px; color:#555555;
-                line-height: 180%;
-            }
-            p strong {
-                letter-spacing: -1;
-                color: #333333;
-            }
-            .eng-strong {
-                letter-spacing: 0;
-            }
-            img {
-                max-width: none;
-            }
-            .outer {
-                width: 915px;
-                margin-right: auto;
-                margin-left: auto;
-                padding-top: 61px;
-            }
-            .top-spacer {
-                height: 13px;
-                background-color: #D8D8D8;
-            }
-            .header {
-                margin-bottom: 11px;
-            }
-            footer {
-                margin-top: 66px;
-            }
-            .topnav {
-                list-style: none;
-                margin: 0;
-            }
-            .topnav > li {
-                float: left;
-            }
-            .topnav .on {
-                position: absolute;
-                display: none;
-            }
-            .content_top_img {
-                margin-top: 14px;
-            }
-            .subnav.welcome {
-                background-color: #3D8D91;
-            }
-            .subnav.sermon  {
-                background-color: #9CAA05;
-            }
-            .subnav.vision-mission {
-                background-color: #44669F;
-            }
-            .subnav.sowing   {
-                background-color: #7A5628;
-            }
-            .subnav.growing  {
-                background-color: #3F8142;
-            }
-            .subnav.reaping  {
-                background-color: #C96613;
-            }
-            .subnav.connection  {
-                background-color: #9C4B84;
-            }
-            .subnav {
-                display: none;
-                position: absolute;
-                -webkit-border-radius: 7px;
-                -moz-border-radius: 7px;
-                border-radius: 7px;
-                height: 24px;
-            }
-            .subnav ul {
-                list-style: none;
-                font-weight: bold;
-                padding-left: 15px;
-                padding-right: 15px;
-                margin: 3px 0px 3px 0px ;
-            }
-            .subnav ul > li {
-                float: left;
-                padding-left: 6px;
-                padding-right: 6px;
-            }
-            .subnav ul > li a:link {
-                color: white;
-            }
-            .subnav ul > li a:visited {
-                color: white;
-            }
-            .td_apply {
-                padding-top: 8px;
-                /*padding-bottom: 2px;*/
-                padding-left: 6px;
-                padding-right: 0px;
-                /*line-height: 130%;*/
-            }
-            .time-location-table .td_apply {
-                vertical-align: middle;
-                padding: 5px 0px 2px 6px;
-            }
-            .location-contact-table {
-                line-height: 15px;
-            }
-            .minister-table .td_apply {
-                padding-top: 0;
-            }
-            .ministry-table p {
-                margin-bottom: 0;
-            }
-            .ministry-table .td_dept {
-                padding: 7px 0px 4px 0px;
-            }
-            .ministry-table .td_h {
-                padding: 15px 5px 20px 0px;
-            }
-        </style>
         {% render_block "css" %}
         {% block css %}
+        {% endblock %}
+        {% block head %}
         {% endblock %}
     </head>
     <body>
@@ -207,46 +90,6 @@
                   var offImg = onImg.replace("_on.gif", "_off.gif");
                   $img.attr("src", offImg);
               });
-              /*
-              $('.topnav li:not(.ancestor) a').hover(function() {
-                  $(this).find("img:hidden").offset(function(index, currentOffset) {
-                      if(currentOffset.top == 0 || currentOffset.left == 0)
-                    return $(this).parent().find("img:visible").offset()
-                      else
-                      return currentOffset;
-                  });
-                  $(this).find("img").fadeToggle();
-              }, function() {
-                  $(this).find("img").fadeToggle();
-              });
-              */
-              /*
-               $(".topnav li a img.on").offset(function(index, currentOffset) {
-               return $(this).parent().find("img.off").offset()
-               });
-               */
-              /*
-               $('.topnav li a').hover(function() {
-               var $img = $(this).find("img");
-               var offImg = $img.attr("src");
-               //if(offImg.index)
-               var onImg = offImg.replace("_off.gif", "_on.gif");
-               $img.fadeOut(function(){
-               $img.attr("src", onImg);
-               $img.load(function() { $img.fadeIn(); });
-               });
-               },function(){
-               var $img = $(this).find("img");
-               var onImg = $img.attr("src");
-               var offImg = onImg.replace("_on.gif", "_off.gif");
-               $img.fadeOut(function(){
-               $img.attr("src", offImg);
-               $img.load(function() { $img.fadeIn(); });
-               });
-               });
-               */
-            //$('.dropdown-toggle').dropdown();
-            //$(".collapse").collapse()
           });
         </script>
         {% render_block "js" %}
