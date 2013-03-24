@@ -23,7 +23,11 @@ img {
     background-color: #D8D8D8;
 }
 .header {
+    height: 70px;
     margin-bottom: 11px;
+}
+.logo {
+    float: left;
 }
 footer {
     margin-top: 66px;
